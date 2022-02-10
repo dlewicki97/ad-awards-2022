@@ -1,0 +1,71 @@
+.button {
+  $arrowContainerDim: 80px;
+  $newArrowContainerDim: 120px;
+  $buttonDim: 170px;
+  width: fit-content;
+  position: relative;
+  display: block;
+  z-index: 1;
+  width: $buttonDim;
+  height: $buttonDim;
+  cursor: pointer;
+  &-arrow-container:hover + &-text {
+    transform: rotate(30deg);
+  }
+  &-text {
+    color: $adYellow;
+    font-size: 1.1rem;
+    height: inherit;
+    width: inherit;
+    transform-origin: center;
+    transform: rotate(-58deg);
+    transition: transform 0.6s ease;
+    // border: 1px solid white;
+    pointer-events: none;
+    span {
+      position: absolute;
+      $spanHeight: $newArrowContainerDim - 30px;
+      height: $spanHeight;
+      width: 20px;
+      top: 50%;
+      left: 50%;
+      // border: 1px solid gray;
+      transform-origin: bottom center;
+      text-align: center;
+      @for $i from 1 to 30 {
+        &:nth-child(#{$i}) {
+          transform: translate(-50%, -100%) rotate($i * 9deg);
+        }
+      }
+    }
+  }
+  &-arrow-container {
+    border-radius: 100%;
+    border: 2px solid white;
+    width: $arrowContainerDim;
+    height: $arrowContainerDim;
+    transition: all 0.7s ease;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &:hover {
+      width: $newArrowContainerDim;
+      height: $newArrowContainerDim;
+    }
+  }
+  &-arrow-container:hover &-arrow {
+    transform: translate(-50%, -50%);
+    // transition: left 0.5s ease-out;
+  }
+  &-arrow {
+    transform: translate(-$arrowContainerDim, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 45px;
+    width: auto;
+    transition: transform 0.7s ease;
+  }
+}

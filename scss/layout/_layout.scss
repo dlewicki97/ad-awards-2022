@@ -1,0 +1,246 @@
+@import '../helpers/helpers';
+@import 'header';
+@import 'menu_popover';
+
+* {
+  font-family: Poppins;
+  box-sizing: border-box;
+  // cursor: none !important;
+}
+body {
+  margin: 0;
+  background-color: white;
+  cursor: none;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover {
+    color: $adYellow;
+  }
+}
+.cursor-none * {
+  cursor: none !important;
+}
+$cursorDim: 20px;
+.custom-cursor {
+  @media only screen and (hover: none) and (pointer: coarse) {
+    display: none;
+  }
+  z-index: 9999999999999;
+  // padding: 2rem;
+  width: $cursorDim;
+  height: $cursorDim;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(3px 5px 6px #0000008f);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    $cursorBeforeDim: $cursorDim * 2;
+    width: $cursorBeforeDim;
+    height: $cursorBeforeDim;
+    background-color: $adYellow;
+    border-radius: 100%;
+    z-index: 1;
+    opacity: 0;
+  }
+  &.active::before {
+    opacity: 0.3;
+  }
+  &.active {
+    // background-color: $adYellow;
+
+    .cursor-dot {
+      $cursorBeforeDim: $cursorDim * 0.3;
+      width: $cursorBeforeDim;
+      height: $cursorBeforeDim;
+    }
+  }
+  .cursor-dot {
+    background-color: $adYellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    $cursorBeforeDim: $cursorDim;
+    width: $cursorBeforeDim;
+    height: $cursorBeforeDim;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    transition: all 0.15s ease;
+    opacity: 0.85;
+  }
+}
+main {
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+section {
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 9.5rem;
+  margin-bottom: 2rem;
+  @media (max-width: 992px) {
+    font-size: clamp(3rem, 11vw, 9.5rem);
+  }
+}
+h2 {
+  font-weight: 700;
+  text-align: center;
+  font-size: 4rem;
+  $archHeight: 40px;
+  color: #1e1d1e;
+  @media (max-width: 992px) {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+  .arch {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    height: $archHeight;
+    overflow: hidden;
+    &-top,
+    &-bottom {
+      position: absolute;
+      width: 110%;
+      left: 50%;
+      transform: translateX(-50%) rotate(0.5deg);
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+    }
+    &-top {
+      background-color: $adYellow;
+      height: $archHeight;
+    }
+    &-bottom {
+      background-color: white;
+      height: $archHeight / 2 + 12px;
+      z-index: 1;
+      bottom: -1px;
+    }
+  }
+  @media (min-width: 992px) {
+    width: 40vw;
+    margin: auto;
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 29px;
+  font-weight: 300;
+  color: #272425;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  // background-color: $adYellow;
+  // background: repeating-linear-gradient(45deg, $adYellow 5%, black 20%);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    $adYellow 0 20px,
+    #1a191a 20px 40px
+  );
+  border-radius: 7px;
+  border: 1px solid #1a191a;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1a191a;
+}
+
+.mobile-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  $mobileButtonDim: 60px;
+  width: $mobileButtonDim;
+  height: $mobileButtonDim;
+
+  z-index: 2;
+  background-color: white;
+  border-radius: 100%;
+  &:hover::after {
+    width: inherit;
+    height: inherit;
+  }
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: inherit;
+    width: inherit;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $adYellow;
+    width: 0;
+    height: 0;
+    z-index: 2;
+    border-radius: 100%;
+    transition: all 0.5s ease;
+  }
+  &:hover &-icon {
+    animation-name: ring;
+    animation-timing-function: linear;
+    animation-iteration-count: 100;
+    animation-duration: 2.5s;
+
+    @keyframes ring {
+      $initRotate: 10deg;
+      $destinationRotate: 90deg;
+      0% {
+        transform: rotate($destinationRotate);
+      }
+      5% {
+        transform: rotate($initRotate);
+      }
+      10% {
+        transform: rotate($destinationRotate);
+      }
+      15% {
+        transform: rotate($initRotate);
+      }
+      20% {
+        transform: rotate($destinationRotate);
+      }
+      25% {
+        transform: rotate($initRotate);
+      }
+      30% {
+        transform: rotate($initRotate);
+      }
+      100% {
+        transform: rotate($initRotate);
+      }
+    }
+  }
+  &-icon {
+    height: 30px;
+    position: relative;
+    z-index: 3;
+    transform: rotate(10deg);
+  }
+}

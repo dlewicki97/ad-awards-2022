@@ -1,0 +1,143 @@
+.marketing {
+  background-color: #1a191a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  &-grey-ring {
+    border: 2px solid #363636;
+    border-radius: 100%;
+    position: absolute;
+    &-1 {
+      $greyRingDim: 1200px;
+      width: $greyRingDim;
+      height: $greyRingDim;
+      left: 13%;
+      top: -51%;
+      transform: translate(-62%, -69%);
+    }
+    &-2 {
+      $greyRingDim: 2700px;
+      width: $greyRingDim;
+      height: $greyRingDim;
+      left: -40.8rem;
+      bottom: 3rem;
+    }
+  }
+  &-yellow-outer-ring,
+  &-yellow-inner-ring {
+    border: 2px solid $adYellow;
+    border-radius: 100%;
+    position: absolute;
+  }
+  &-yellow-outer-ring {
+    $yellowOuterRingDim: 2800px;
+    width: $yellowOuterRingDim;
+    height: $yellowOuterRingDim;
+    bottom: 0rem;
+    left: -513px;
+    transform: rotate(-13deg);
+    animation-name: rotate2;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-duration: 15s;
+    animation-delay: 1s;
+    @media (max-width: 600px) {
+      display: none;
+    }
+    @keyframes rotate2 {
+      from {
+        transform: rotate(-13deg);
+      }
+      to {
+        transform: rotate(-373deg);
+      }
+    }
+  }
+  &-yellow-inner-ring {
+    $yellowOuterRingDim: 100px;
+    width: $yellowOuterRingDim;
+    height: $yellowOuterRingDim;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $adYellow;
+  }
+  &-container {
+    margin-top: 11rem;
+    @include global_padding_x;
+  }
+  &-title {
+    color: white;
+    span {
+      position: relative;
+      z-index: 1;
+    }
+    mark {
+      background-color: unset;
+      color: $adYellow;
+    }
+  }
+  &-360 {
+    position: relative;
+    $outerRingRadius: 650px;
+
+    &-text {
+      z-index: 2;
+      position: relative;
+    }
+    &-outer-ring {
+      @media (max-width: 1330px) {
+        display: none;
+      }
+      position: absolute;
+      top: -322px;
+      left: -273px;
+      border: 2px solid #363636;
+      border-radius: 100%;
+      width: $outerRingRadius;
+      height: $outerRingRadius;
+      animation-name: rotate;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+      animation-duration: 6s;
+      animation-delay: 2s;
+      transform: rotate(0deg);
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+    }
+    &-inner-ring {
+      border: 2px solid $adYellow;
+      border-radius: 100%;
+      $innerRingRadius: $outerRingRadius * 0.1 + 20px;
+      width: $innerRingRadius;
+      height: $innerRingRadius;
+      position: absolute;
+      right: 0%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  &-description {
+    &,
+    p {
+      color: white;
+      font-weight: 200;
+    }
+    z-index: 1;
+    position: relative;
+    @media (min-width: 992px) {
+      padding-left: 1rem;
+      padding-bottom: 1rem;
+      width: 25vw;
+      //   width: 30%;
+    }
+  }
+}

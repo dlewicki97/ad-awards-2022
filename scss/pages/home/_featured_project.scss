@@ -1,0 +1,7 @@
+.featured-project {
+  background-color: $adYellow;
+  @include global_padding_x;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  min-height: unset;
+}
